@@ -33,6 +33,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import static gr.android.uom.currencyconverter.R.id.textView;
+
 public class CurrencyView extends AppCompatActivity {
     private String myUrl = "http://demo5434819.mockable.io/CurrencyConverter123456";
     private ListView listView;
@@ -42,7 +44,10 @@ public class CurrencyView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_currency_view);
+
+
         DownloadData downloadData = new DownloadData();
         downloadData.execute(myUrl);
         listView = findViewById(R.id.listView);
@@ -98,9 +103,9 @@ public class CurrencyView extends AppCompatActivity {
         }
 
         protected void onPostExecute(String jsonData) {
-            String[] from = {"name_item"};
 
-            int[] to = {R.id.codeTextView};
+
+
             super.onPostExecute(jsonData);
             Log.d(TAG, "onPostExecute parameter is " + jsonData );
             JSONParser parser = new JSONParser();
@@ -113,8 +118,15 @@ public class CurrencyView extends AppCompatActivity {
                 Log.d(TAG, "-------------------------------");
                 hm.put(curs.get(i).getCode(),curs.get(i).getName());
             }
-            ArrayList<HashMap<String, String>> arr =new ArrayList<>();
-            arr.add(hm);
+            listView = findViewById(R.id.listView);
+            ArrayList<String> aList = new ArrayList<String>();
+            for(Currencies currency: curs){
+                aList.add(currency.getCode()+": "+currency.getName());
+            }
+            ArrayAdapter<String> aA = new ArrayAdapter<String>(CurrencyView.this,R.layout.row_layout,R.id.text1,aList);
+            listView.setAdapter(aA);
+
+
 
         }
     }

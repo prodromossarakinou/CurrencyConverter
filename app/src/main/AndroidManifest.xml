@@ -13,6 +13,17 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".CurrencyView">
+
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        android:networkSecurityConfig="@xml/network_security_config"
+        <activity android:name=".ConvertActivity">
+
+        </activity>
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,10 +31,6 @@
             </intent-filter>
 
         </activity>
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-        android:networkSecurityConfig="@xml/network_security_config"
     </application>
 
 </manifest>

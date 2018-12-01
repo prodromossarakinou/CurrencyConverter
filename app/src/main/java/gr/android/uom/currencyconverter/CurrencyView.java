@@ -38,98 +38,41 @@ import static gr.android.uom.currencyconverter.R.id.textView;
 public class CurrencyView extends AppCompatActivity {
     private String myUrl = "http://demo5434819.mockable.io/CurrencyConverter123456";
     private ListView listView;
-    ArrayList<Currencies> curs;
+    private ArrayList<Currencies> curs;
     private static final String TAG = "TeoMainActivity";
     JSONObject JO1;
+    private ArrayList<Currencies> currencies;
+    ArrayList<String> listOfStrings ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_currency_view);
-
-
-        DownloadData downloadData = new DownloadData();
-        downloadData.execute(myUrl);
+        listOfStrings = new ArrayList<>();
         listView = findViewById(R.id.listView);
 
+        ArrayList strs = getIntent().getStringArrayListExtra("strs");
 
+
+
+
+        Intent intent = getIntent();
+        ArrayList<String> namesList = intent.getStringArrayListExtra("names_list");
+        ArrayList<String> codesList = intent.getStringArrayListExtra("codes_list");
+        namesList.size();
+        for(int i = 0; i<codesList.size(); i++){
+            Log.d(TAG, "onCreate: "+ codesList.get(i) +": "+namesList.get(i));
+            listOfStrings.add(codesList.get(i) +": "+namesList.get(i));
+        }
+        ArrayAdapter<String> aA = new ArrayAdapter<>(CurrencyView.this,R.layout.row_layout,R.id.text1,listOfStrings);
+        listView.setAdapter(aA);
 
     }
 
 
 
-    public class DownloadData extends AsyncTask<String,String,String>{
 
-        @Override
-        protected String doInBackground(String... strings) {
-            Log.d(TAG, "doInBackground starts with: " + strings[0]);
-            String postData = downloadJSON(strings[0]);
-            if(postData == null){
-                Log.e(TAG, "doInBackground: Error downloading from url " + strings[0] );
-            }
-            return postData;
-        }
-        private String downloadJSON(String urlPath) {
-            StringBuilder sb = new StringBuilder();
-
-            try{
-                URL url = new URL(urlPath);
-                HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-                int reponseCode = connection.getResponseCode();
-                Log.d(TAG, "downloadJSON: Response code was " + reponseCode);
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-                String line = reader.readLine();
-                while(line != null){
-                    sb.append(line).append("\n");
-                    line = reader.readLine();
-                }
-
-                reader.close();
-
-            } catch (MalformedURLException e) {
-                Log.e(TAG, "downloadJSON: not correct URL: "+urlPath , e);
-            } catch (IOException e) {
-                Log.e(TAG, "downloadJSON: io error ",e);
-            }
-
-            return sb.toString();
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        protected void onPostExecute(String jsonData) {
-
-
-
-            super.onPostExecute(jsonData);
-            Log.d(TAG, "onPostExecute parameter is " + jsonData );
-            JSONParser parser = new JSONParser();
-            parser.parse(jsonData);
-
-             curs = parser.getCurs();
-            HashMap<String,String> hm = new HashMap<>();
-            for(int i =0; i<curs.size(); i++){
-                Log.d(TAG, curs.get(i).getName());
-                Log.d(TAG, "-------------------------------");
-                hm.put(curs.get(i).getCode(),curs.get(i).getName());
-            }
-            listView = findViewById(R.id.listView);
-            ArrayList<String> aList = new ArrayList<String>();
-            for(Currencies currency: curs){
-                aList.add(currency.getCode()+": "+currency.getName());
-            }
-            ArrayAdapter<String> aA = new ArrayAdapter<String>(CurrencyView.this,R.layout.row_layout,R.id.text1,aList);
-            listView.setAdapter(aA);
-
-
-
-        }
-    }
 
 
 }

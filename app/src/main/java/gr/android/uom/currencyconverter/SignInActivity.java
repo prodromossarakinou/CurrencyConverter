@@ -24,7 +24,7 @@ public class SignInActivity extends AppCompatActivity {
     public ArrayList<Currencies> curs;
     ArrayList<String> listOfNames;
     ArrayList<String> listofCodes;
-    private static final String TAG = "TeoMainActivity";
+    private static final String TAG = "Prosa";
     JSONObject JO1;
     ArrayList<String> strs;
     @Override

@@ -170,7 +170,7 @@ public class ConvertActivity extends AppCompatActivity {
                 result.setText(ammountText.getText().toString()+" " +fromSpinner.getSelectedItem().toString()+
                         " is worth " +format.format(text).toString()+" "+toSpinner.getSelectedItem().toString() +".");
             } catch (JSONException e) {
-                Log.d("MITSOS", "onPostExecute: gamw to spiti");
+                Log.d("MITSOS", "onPostExecute: FAIL");
                 e.printStackTrace();
             }
 

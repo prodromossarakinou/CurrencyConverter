@@ -39,7 +39,7 @@ public class CurrencyView extends AppCompatActivity {
     private String myUrl = "http://demo5434819.mockable.io/CurrencyConverter123456";
     private ListView listView;
     private ArrayList<Currencies> curs;
-    private static final String TAG = "TeoMainActivity";
+    private static final String TAG = "Prosa";
     JSONObject JO1;
     private ArrayList<Currencies> currencies;
     ArrayList<String> listOfStrings ;

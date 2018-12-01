@@ -10,12 +10,10 @@
         android:id="@+id/fromSpinner"
         android:layout_width="120dp"
         android:layout_height="65dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/ammountText"
-        app:layout_constraintEnd_toStartOf="@+id/toText"
         app:layout_constraintStart_toEndOf="@+id/fromText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.666" />
@@ -26,30 +24,27 @@
         android:id="@+id/toSpinner"
         android:layout_width="116dp"
         android:layout_height="65dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/ammountText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/toText"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.68" />
 
     <EditText
         android:id="@+id/ammountText"
         android:layout_width="216dp"
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="128dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Ammount"
         android:inputType="numberDecimal"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,7 +68,7 @@
         android:id="@+id/fromText"
         android:layout_width="61dp"
         android:layout_height="65dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
@@ -84,23 +79,22 @@
         app:layout_constraintBottom_toTopOf="@+id/ammountText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintVertical_bias="0.298" />
 
     <TextView
         android:id="@+id/toText"
         android:layout_width="47dp"
         android:layout_height="65dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="32dp"
         android:gravity="center_vertical"
         android:text="to:"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/fromText"
+        app:layout_constraintEnd_toStartOf="@+id/toSpinner"
+        app:layout_constraintStart_toEndOf="@+id/fromSpinner"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -115,11 +109,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ammountText" />
-
-    <android.support.constraint.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "526593495269",
+    "firebase_url": "https://currencyconverter-7b660.firebaseio.com",
+    "project_id": "currencyconverter-7b660",
+    "storage_bucket": "currencyconverter-7b660.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526593495269:android:6349d16f4af21dad",
+        "android_client_info": {
+          "package_name": "gr.android.uom.currencyconverter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526593495269-2qj37abvh3lrr3pqfe69svec0eiko829.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gr.android.uom.currencyconverter",
+            "certificate_hash": "55f1834a29f60f5c202c462e46f32d4c3b9fa72b"
+          }
+        },
+        {
+          "client_id": "526593495269-u79d0k68bap6sb9iv52uug5235pp39j0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gr.android.uom.currencyconverter",
+            "certificate_hash": "3a64da20785f1845280ba88316d70cfdbf962dbd"
+          }
+        },
+        {
+          "client_id": "526593495269-totekf9je5kkhr1ceelcvq3vdk6g226o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gr.android.uom.currencyconverter",
+            "certificate_hash": "04ac173ee6958a5716100c7778f232fd1078f68c"
+          }
+        },
+        {
+          "client_id": "526593495269-6ul9i4q7tfr5b495v476l8b702h4ei65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClMHminh1Y91P4coDvdM5yQ7aGhtNmNMo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526593495269-6ul9i4q7tfr5b495v476l8b702h4ei65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

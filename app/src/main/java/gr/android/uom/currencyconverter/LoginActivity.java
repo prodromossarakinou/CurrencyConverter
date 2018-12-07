@@ -121,7 +121,8 @@ public class LoginActivity extends AppCompatActivity {
                                         }
 
                                     });
-
+                        Intent intent = new Intent(LoginActivity.this,SignInActivity.class);
+                        startActivity(intent);
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -135,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     private void updateUI(FirebaseUser user) {
+                        
                     }
                 });
     }

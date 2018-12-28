@@ -52,6 +52,10 @@ public class SignInActivity extends AppCompatActivity {
         strs.add("PROSA");
 
     }
+    public void seeList(View v){
+        Intent intent = new Intent(this,Saves.class);
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed() { }
     public void goOut(View v){

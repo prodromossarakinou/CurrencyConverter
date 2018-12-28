@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telecom.Call;
 import android.util.Log;
+import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -44,10 +48,17 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "reProsa";
     private FirebaseDatabase database;
     private FirebaseFirestore db ;
+    ProgressBar progressBar;
+    EditText editTextEmail, editTextPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        editTextEmail = findViewById(R.id.emailText);
+        Log.d("HEY", "onCreate: EGINE");
+        editTextPassword = findViewById(R.id.passwordText);
+
         database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
         db = FirebaseFirestore.getInstance();
@@ -80,6 +91,65 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    public void goToSignUp(View v){
+        startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+    }
+    private void userLogin(){
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+        if (email.isEmpty()) {
+            editTextEmail.setError("Email is required");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Please enter a valid email");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            editTextPassword.setError("Password is required");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6) {
+            editTextPassword.setError("Minimum lenght of password should be 6");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (task.isSuccessful()) {
+                    finish();
+                    Intent intent = new Intent(LoginActivity.this, SignInActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (mAuth.getCurrentUser() != null) {
+            finish();
+            startActivity(new Intent(this, SignInActivity.class));
+        }
+    }
+    public void Connecting(View v){
+        userLogin();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -139,6 +209,7 @@ public class LoginActivity extends AppCompatActivity {
                         
                     }
                 });
+
     }
 
 

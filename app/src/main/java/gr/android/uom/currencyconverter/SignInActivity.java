@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONObject;
 
@@ -20,6 +24,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity {
+    private FirebaseUser user;
+    private TextView nameView;
     private String myUrl = "http://demo5434819.mockable.io/CurrencyConverter123456";
     public ArrayList<Currencies> curs;
     ArrayList<String> listOfNames;
@@ -29,10 +35,15 @@ public class SignInActivity extends AppCompatActivity {
     ArrayList<String> strs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_sign_in);
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        nameView = findViewById(R.id.nameView);
+        
+        nameView.setText(user.getDisplayName());
 
         DownloadData downloadData = new DownloadData();
         downloadData.execute(myUrl);
@@ -41,7 +52,11 @@ public class SignInActivity extends AppCompatActivity {
         strs.add("PROSA");
 
     }
-
+    public void goOut(View v){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+    }
 
     public void openCurrenciesView (View view){
         Intent intent;

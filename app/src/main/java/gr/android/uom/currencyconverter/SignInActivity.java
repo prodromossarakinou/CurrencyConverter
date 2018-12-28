@@ -42,7 +42,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         user = FirebaseAuth.getInstance().getCurrentUser();
         nameView = findViewById(R.id.nameView);
-        
+
         nameView.setText(user.getDisplayName());
 
         DownloadData downloadData = new DownloadData();
@@ -52,6 +52,8 @@ public class SignInActivity extends AppCompatActivity {
         strs.add("PROSA");
 
     }
+    @Override
+    public void onBackPressed() { }
     public void goOut(View v){
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this,LoginActivity.class);

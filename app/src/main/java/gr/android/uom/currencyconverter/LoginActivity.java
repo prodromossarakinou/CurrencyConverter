@@ -1,5 +1,6 @@
 package gr.android.uom.currencyconverter;
 
+import android.app.Application;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -94,6 +95,14 @@ public class LoginActivity extends AppCompatActivity {
     public void goToSignUp(View v){
         startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
     }
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+    }
+
     private void userLogin(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();

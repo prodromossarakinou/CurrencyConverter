@@ -104,7 +104,10 @@ public class SignUpActivity extends AppCompatActivity {
         updateUserName();
     }
     public void goBack(View view){
-        startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+    }
+    public void onBackPressed() {
+        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
     }
     public void updateUserName(){
 

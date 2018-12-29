@@ -15,19 +15,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "526593495269-2qj37abvh3lrr3pqfe69svec0eiko829.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gr.android.uom.currencyconverter",
+            "certificate_hash": "55f1834a29f60f5c202c462e46f32d4c3b9fa72b"
+          }
+        },
+        {
+          "client_id": "526593495269-u79d0k68bap6sb9iv52uug5235pp39j0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gr.android.uom.currencyconverter",
+            "certificate_hash": "3a64da20785f1845280ba88316d70cfdbf962dbd"
+          }
+        },
+        {
           "client_id": "526593495269-totekf9je5kkhr1ceelcvq3vdk6g226o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "gr.android.uom.currencyconverter",
             "certificate_hash": "04ac173ee6958a5716100c7778f232fd1078f68c"
-          }
-        },
-        {
-          "client_id": "526593495269-q5fquo3436hmo1ap6clqf46nhk074f0a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "gr.android.uom.currencyconverter",
-            "certificate_hash": "e51d165126d35b722dc7fa77945cbc5ea5e6f5ea"
           }
         },
         {

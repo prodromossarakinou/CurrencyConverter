@@ -33,7 +33,7 @@ public class SavedCurrencies {
         dr= fs.collection("Saves").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         HashMap<String,String> hs = new HashMap<>();
 
-        hs.put("SAVE","paok");
+        hs.put("SAVE","HEY");
 
         dr.set(hs).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -47,7 +47,7 @@ public class SavedCurrencies {
         dr.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                Log.d("sasgamaw", "onEvent: "+documentSnapshot.getData().toString());
+                Log.d("olakomple", "onEvent: "+documentSnapshot.getData().toString());
                 Log.d("olakala", "onEvent: "+documentSnapshot.getString("SAVE"));
             }
         });

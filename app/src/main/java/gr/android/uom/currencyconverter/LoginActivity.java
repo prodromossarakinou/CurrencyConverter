@@ -187,8 +187,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
-                                            Toast.makeText(LoginActivity.this,"Productadded",
-                                                    Toast.LENGTH_SHORT).show();
+
                                             Log.d("eees", "onSuccess: ");
                                         }
                                     })

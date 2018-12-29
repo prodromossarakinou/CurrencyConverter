@@ -4,6 +4,7 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 28
     defaultConfig {
+        multiDexEnabled true
         applicationId "gr.android.uom.currencyconverter"
         minSdkVersion 19
         targetSdkVersion 28

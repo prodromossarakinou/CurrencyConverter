@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -60,6 +61,7 @@ public class SignInActivity extends AppCompatActivity {
     public void onBackPressed() { }
     public void goOut(View v){
         FirebaseAuth.getInstance().signOut();
+        LoginManager.getInstance().logOut();
         Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }

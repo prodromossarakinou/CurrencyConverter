@@ -2,12 +2,14 @@ package gr.android.uom.currencyconverter;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.service.autofill.SaveCallback;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,13 +44,15 @@ public class ConvertActivity extends AppCompatActivity {
     private TextView result;
     private Double value;
     private String data;
-
+    private Button saveButton;
+    private SavedCurrencies sc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convert);
         fromSpinner = findViewById(R.id.fromSpinner);
         toSpinner = findViewById(R.id.toSpinner);
+        saveButton = findViewById(R.id.saveButton);
 
         Intent intent = getIntent();
         final ArrayList<String> codesList = intent.getStringArrayListExtra("codes_list");
@@ -109,6 +113,10 @@ public class ConvertActivity extends AppCompatActivity {
         }
 
     }
+    public void saveCurr(View v){
+        sc.Save(sc);
+        Toast.makeText(this,"Favourite saved",Toast.LENGTH_SHORT).show();
+    }
 
 
 
@@ -167,8 +175,27 @@ public class ConvertActivity extends AppCompatActivity {
                 JSONObject jsonObject= new JSONObject(jsonData);
                 Double text = jsonObject.getDouble("value");
                 DecimalFormat format = new DecimalFormat("#.00");
-                result.setText(ammountText.getText().toString()+" " +fromSpinner.getSelectedItem().toString()+
-                        " is worth " +format.format(text).toString()+" "+toSpinner.getSelectedItem().toString() +".");
+
+                if(format.format(text).equals(".00")){
+                    Log.d("0nika", "onPostExecute: ");
+                    result.setText(ammountText.getText().toString()+" "+ fromSpinner.getSelectedItem().toString()+" doesn't worth any "+
+                            toSpinner.getSelectedItem().toString()+".");
+
+                }
+                else{
+                    result.setText(ammountText.getText().toString()+" " +fromSpinner.getSelectedItem().toString()+
+                            " is worth " +format.format(text)+" "+toSpinner.getSelectedItem().toString() +".");
+                    saveButton.setVisibility(View.VISIBLE);
+                    double rate= text/(Double.parseDouble(ammountText.getText().toString()));
+                    DecimalFormat rateFormat = new DecimalFormat("#.0000");
+                    String curr1 = fromSpinner.getSelectedItem().toString();
+                    String curr2 = toSpinner.getSelectedItem().toString();
+                    String date = "29/12/2018";
+                    sc = new SavedCurrencies(Double.parseDouble(rateFormat.format(rate)),curr1,curr2,date);
+
+
+                }
+
             } catch (JSONException e) {
                 Log.d("MITSOS", "onPostExecute: FAIL");
                 e.printStackTrace();

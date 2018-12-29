@@ -57,8 +57,7 @@
         android:id="@+id/result"
         android:layout_width="304dp"
         android:layout_height="56dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="170dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -67,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.94" />
 
     <TextView
         android:id="@+id/fromText"
@@ -108,10 +107,10 @@
         android:layout_width="219dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:onClick="Convert"
         android:text="Convert"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ammountText" />
@@ -121,5 +120,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="saveCurr"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 </android.support.constraint.ConstraintLayout>

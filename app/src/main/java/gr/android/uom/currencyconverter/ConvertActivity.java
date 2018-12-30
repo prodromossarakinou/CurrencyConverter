@@ -26,6 +26,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ConvertActivity extends AppCompatActivity {
 
@@ -191,7 +193,8 @@ public class ConvertActivity extends AppCompatActivity {
                     String curr1 = fromSpinner.getSelectedItem().toString();
                     String curr2 = toSpinner.getSelectedItem().toString();
                     String date = "29/12/2018";
-                    sc = new SavedCurrencies(Double.parseDouble(rateFormat.format(rate)),curr1,curr2,date);
+
+                    sc = new SavedCurrencies(Double.parseDouble(rateFormat.format(rate)),curr1,curr2,Calendar.getInstance().getTime().toString());
 
 
                 }

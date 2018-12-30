@@ -56,26 +56,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="102dp"
-        android:layout_height="42dp"
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="gr.android.uom.currencyconverter.SignOutFrag"
+        android:layout_width="379dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:onClick="goOut"
-        android:text="Sign Out"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/nameView"
-        android:layout_width="97dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="8dp"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button4"
-        app:layout_constraintEnd_toStartOf="@+id/button4" />
 </android.support.constraint.ConstraintLayout>

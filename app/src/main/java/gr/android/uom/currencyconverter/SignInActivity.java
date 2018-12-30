@@ -2,12 +2,15 @@ package gr.android.uom.currencyconverter;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +37,9 @@ public class SignInActivity extends AppCompatActivity {
     private static final String TAG = "Prosa";
     JSONObject JO1;
     ArrayList<String> strs;
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,9 +48,9 @@ public class SignInActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_sign_in);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        nameView = findViewById(R.id.nameView);
 
-        nameView.setText(user.getDisplayName());
+
+
 
         DownloadData downloadData = new DownloadData();
         downloadData.execute(myUrl);
@@ -59,12 +65,7 @@ public class SignInActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() { }
-    public void goOut(View v){
-        FirebaseAuth.getInstance().signOut();
-        LoginManager.getInstance().logOut();
-        Intent intent = new Intent(this,LoginActivity.class);
-        startActivity(intent);
-    }
+
 
     public void openCurrenciesView (View view){
         Intent intent;

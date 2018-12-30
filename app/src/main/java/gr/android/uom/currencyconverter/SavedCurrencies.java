@@ -2,6 +2,7 @@ package gr.android.uom.currencyconverter;
 
 import android.util.Log;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -12,6 +13,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.annotation.Nullable;
@@ -42,7 +45,10 @@ public class SavedCurrencies {
         dr= fs.collection("Saves").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         HashMap<String,String> hs = new HashMap<>();
 
-        hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate:"+aSave.rate+" AT:"+ aSave.date);
+        hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+aSave.rate+"\n AT:"+ aSave.date);
+
+
+
         dr1.add(hs);
 
     }

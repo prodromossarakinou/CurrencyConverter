@@ -72,7 +72,7 @@ public class SignOutFrag extends Fragment {
                     case R.id.menu_item_share:
                         ShareLinkContent content = new ShareLinkContent.Builder()
                                 .setQuote("This is CurrencyConverter App, Download it for free")
-                                .setContentUrl(Uri.parse("https://drive.google.com/file/d/1Q2ZIkbWRdMEV5kjMKzGNlNc3UyyAUnTr/view?usp=sharing"))
+                                .setContentUrl(Uri.parse("https://drive.google.com/file/d/12GNgisvGEcldLJqp1UTnwKsYst0fuhyh/view?usp=sharing"))
 
                                 .build();
                         ShareDialog shareDialog = new ShareDialog(getActivity());

@@ -1,7 +1,10 @@
 package gr.android.uom.currencyconverter;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         editTextEmail = findViewById(R.id.emailText);
         Log.d("HEY", "onCreate: EGINE");
         editTextPassword = findViewById(R.id.passwordText);
@@ -95,6 +99,8 @@ public class LoginActivity extends AppCompatActivity {
     public void goToSignUp(View v){
         startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
     }
+
+
     @Override
     public void onBackPressed() {
         Intent a = new Intent(Intent.ACTION_MAIN);
@@ -187,8 +193,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
-                                            Toast.makeText(LoginActivity.this,"Productadded",
-                                                    Toast.LENGTH_SHORT).show();
+
                                             Log.d("eees", "onSuccess: ");
                                         }
                                     })

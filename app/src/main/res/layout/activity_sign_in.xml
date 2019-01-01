@@ -10,23 +10,23 @@
         android:id="@+id/btnCurrencies"
         android:layout_width="291dp"
         android:layout_height="71dp"
-        android:layout_marginTop="342dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/archivo_black"
         android:onClick="openCurrenciesView"
         android:text="Currencies View"
         android:textAllCaps="false"
         android:textSize="24sp"
         android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="@+id/savesButton"
         app:layout_constraintStart_toStartOf="@+id/savesButton"
-        app:layout_constraintTop_toTopOf="parent"
         tools:textAllCaps="false" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="293dp"
         android:layout_height="75dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="72dp"
         android:fontFamily="@font/archivo_black"
         android:onClick="openConverter"
         android:text="Converter"
@@ -36,19 +36,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnCurrencies"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/btnCurrencies"
-        app:layout_constraintTop_toBottomOf="@+id/btnCurrencies"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/btnCurrencies" />
 
     <Button
         android:id="@+id/savesButton"
         android:layout_width="293dp"
         android:layout_height="75dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/archivo_black"
         android:onClick="seeList"
-        android:text="Favourite"
+        android:text="Favourites"
         android:textAllCaps="false"
         android:textSize="24sp"
         android:textStyle="italic"
@@ -68,4 +66,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

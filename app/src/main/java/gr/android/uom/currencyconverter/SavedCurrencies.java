@@ -1,25 +1,25 @@
 package gr.android.uom.currencyconverter;
 
+import android.content.Intent;
+import android.content.pm.SigningInfo;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.google.firebase.Timestamp;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Collection;
 import java.util.HashMap;
 
-import javax.annotation.Nullable;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
-public class SavedCurrencies {
+
+public class SavedCurrencies extends AppCompatActivity {
     private double rate;
     private String curr1,curr2;
     private String date;
@@ -33,6 +33,7 @@ public class SavedCurrencies {
         curr2 = aCurr2;
         date = aDate;
 
+
     }
     public void Save(SavedCurrencies aSave){
         Log.d("edww", "Save: "+FirebaseAuth.getInstance().getCurrentUser().getEmail());
@@ -45,12 +46,15 @@ public class SavedCurrencies {
         dr= fs.collection("Saves").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         HashMap<String,String> hs = new HashMap<>();
 
-        hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+aSave.rate+"\n AT:"+ aSave.date);
+        hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+aSave.rate+"\n "+ aSave.date);
+        hs.put("Details","Saving Details");
 
 
 
         dr1.add(hs);
 
     }
+
+
 
 }

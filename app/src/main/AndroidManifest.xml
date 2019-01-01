@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider343945979722996"
+            android:exported="true" />
+
         <activity android:name=".CurrencyView" />
 
         <meta-data
@@ -49,9 +54,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".Saves">
-
-        </activity>
+        <activity android:name=".Saves"></activity>
     </application>
 
 </manifest>

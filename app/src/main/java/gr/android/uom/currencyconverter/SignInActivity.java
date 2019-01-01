@@ -1,18 +1,22 @@
 package gr.android.uom.currencyconverter;
 
 import android.content.Intent;
+
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -25,40 +29,44 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
+
+
 
 public class SignInActivity extends AppCompatActivity {
     private FirebaseUser user;
+
     private TextView nameView;
     private String myUrl = "http://demo5434819.mockable.io/CurrencyConverter123456";
     public ArrayList<Currencies> curs;
     ArrayList<String> listOfNames;
     ArrayList<String> listofCodes;
     private static final String TAG = "Prosa";
-    JSONObject JO1;
-    ArrayList<String> strs;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_sign_in);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
-
         DownloadData downloadData = new DownloadData();
         downloadData.execute(myUrl);
-        strs = new ArrayList<>();
-        strs.add("PROSA");
-        strs.add("PROSA");
+
 
     }
+
+
+    public static String activityTitle(){
+        return "SignIn";
+    }
+
+
+
+
+
     public void seeList(View v){
         Intent intent = new Intent(this,Saves.class);
         startActivity(intent);
@@ -147,10 +155,7 @@ public class SignInActivity extends AppCompatActivity {
                 listOfNames.add(currency.getName());
 
             }
-//            Bundle bundle = new Bundle();
-//            bundle.putParcelableArrayList("myList",curs);
-//            Intent intent = new Intent(SignInActivity.this,CurrencyView.class);
-//            intent.putExtras(bundle);
+
 
 
         }

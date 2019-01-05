@@ -1,6 +1,6 @@
 package gr.android.uom.currencyconverter;
 
-public class Favourites implements Comparable<Favourites> {
+public class Favourites implements Comparable<Favourites>{
     private String text;
     private String id;
 

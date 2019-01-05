@@ -48,12 +48,14 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //download data first of all
-
-        setContentView(R.layout.activity_sign_in);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-
         DownloadData downloadData = new DownloadData();
         downloadData.execute(myUrl);
+        setContentView(R.layout.activity_sign_in);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        listOfNames = new ArrayList<>();
+        listofCodes = new ArrayList<>();
+
+
 
 
 

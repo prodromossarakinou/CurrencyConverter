@@ -47,13 +47,15 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //download data first of all
+
         setContentView(R.layout.activity_sign_in);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-
-
         DownloadData downloadData = new DownloadData();
         downloadData.execute(myUrl);
+
+
 
 
     }
@@ -78,17 +80,35 @@ public class SignInActivity extends AppCompatActivity {
     public void openCurrenciesView (View view){
         Intent intent;
         intent = new Intent(SignInActivity.this,CurrencyView.class);
-        intent.putStringArrayListExtra("names_list",listOfNames);
-        intent.putStringArrayListExtra("codes_list",listofCodes);
-        startActivity(intent);
+        if(listofCodes.isEmpty() || listOfNames.isEmpty()){
+            ArrayList<String> emptyNames = new ArrayList<>();
+            ArrayList<String> emptyCodes = new ArrayList<>();
+            emptyNames.add("Go back and come again in several minutes");
+            emptyCodes.add("  -  ");
+            intent.putStringArrayListExtra("names_list",emptyNames);
+            intent.putStringArrayListExtra("codes_list",emptyCodes);
+            startActivity(intent);
+        }
+        else {
+            intent.putStringArrayListExtra("names_list", listOfNames);
+            intent.putStringArrayListExtra("codes_list", listofCodes);
+            startActivity(intent);
+        }
 
     }
     public void openConverter (View view){
         Intent intent;
         intent = new Intent(SignInActivity.this,ConvertActivity.class);
-        intent.putStringArrayListExtra("codes_list",listofCodes);
-        startActivity(intent);
-
+        if(listofCodes.isEmpty()){
+            ArrayList<String> emptyCodes = new ArrayList<>();
+            emptyCodes.add("   ");
+            intent.putStringArrayListExtra("codes_list",emptyCodes);
+            startActivity(intent);
+        }
+        else {
+            intent.putStringArrayListExtra("codes_list", listofCodes);
+            startActivity(intent);
+        }
 
     }
 

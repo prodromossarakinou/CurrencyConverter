@@ -40,7 +40,7 @@ public class JSONParser {
                         Log.d("GEIASAS", "parse: " + cName);
                         Currencies c = new Currencies(cName, cCode);
                         Curs.add(c);
-                        }
+                    }
                 }
                 catch (JSONException e) {
                     Log.e("PRS", "parse: Error parsing json data", e);

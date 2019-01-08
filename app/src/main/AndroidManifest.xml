@@ -2,19 +2,72 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="gr.android.uom.currencyconverter">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/myapprocks"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/myapprocks"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".CurrencyView">
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider343945979722996"
+            android:exported="true" />
+
+        <activity android:name=".CurrencyView"
+            android:screenOrientation="portrait"
+            />
+
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        android:networkSecurityConfig="@xml/network_security_config"
+        <activity android:name=".ConvertActivity"
+        android:screenOrientation="portrait" />
+        <activity android:name=".SignInActivity"
+
+            android:screenOrientation="portrait" />
+
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            android:screenOrientation="portrait" />
+        </activity>
+        <activity android:name=".SignUpActivity" android:screenOrientation="portrait" />
+        <activity android:name=".Saves"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

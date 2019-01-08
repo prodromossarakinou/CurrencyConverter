@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+
+    <Button
+        android:id="@+id/btnCurrencies"
+        android:layout_width="291dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/archivo_black"
+        android:onClick="openCurrenciesView"
+        android:text="Currencies View"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/savesButton"
+        app:layout_constraintStart_toStartOf="@+id/savesButton"
+        tools:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="293dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="72dp"
+        android:fontFamily="@font/archivo_black"
+        android:onClick="openConverter"
+        android:text="Converter"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnCurrencies"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnCurrencies" />
+
+    <Button
+        android:id="@+id/savesButton"
+        android:layout_width="293dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/archivo_black"
+        android:onClick="seeList"
+        android:text="Favourites"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/btnCurrencies"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="gr.android.uom.currencyconverter.SignOutFrag"
+        android:layout_width="379dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment"
+        app:srcCompat="@drawable/currencyconverter" />
+
+</android.support.constraint.ConstraintLayout>

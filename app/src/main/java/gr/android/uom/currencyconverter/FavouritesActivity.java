@@ -27,7 +27,7 @@ import java.util.Collections;
 
 import javax.annotation.Nullable;
 
-public class Saves extends AppCompatActivity {
+public class FavouritesActivity extends AppCompatActivity {
     ArrayList<String> ar;
 
     private ListView lv;
@@ -41,7 +41,7 @@ public class Saves extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_saves);
+        setContentView(R.layout.activity_favourites);
 
         ar = new ArrayList<>();
         for(int i = 0; i<23; i++){
@@ -120,7 +120,7 @@ public class Saves extends AppCompatActivity {
     }
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(Saves.this,MainMenu.class);
+        Intent intent = new Intent(FavouritesActivity.this,MainMenu.class);
         startActivity(intent);
 
     }
@@ -142,9 +142,11 @@ public class Saves extends AppCompatActivity {
 
             for(DocumentSnapshot s: queryDocumentSnapshots.getDocuments()){
                 Log.d("Aloha2", "onEvent: " + s.getString("SavedCurrency")+ " "+k);
-                MyFavourites f = new MyFavourites(s.getString("SavedCurrency"),s.getId());
+                MyFavourites f = new MyFavourites(s.getString("SavedCurrency")+" "+s.getString("timestamp"),s.getId());
                 dataToReturn.add(f);
+                Log.d("PARESAVE RE", "onEvent: "+f.toString());
                 Log.d("prosas", "onEvent: "+ s.getId());
+                Log.d("PAREPAREPARE ","onEvent "+ android.os.Build.MODEL);
                 k++;
             }
 

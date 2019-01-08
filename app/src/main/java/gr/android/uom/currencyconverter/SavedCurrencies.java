@@ -18,7 +18,9 @@ import java.util.HashMap;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-
+//κλάση η οποία υποδηλώνει αντικείμενα τα οποία αποθηκεύονται στο Firebase
+//ο χρήστης έχει την δυνατότητα να τα δεί μέσω του Favourites το οποίο εμφανίζεται στον χρήστη
+//FavouritesActivity
 public class SavedCurrencies extends AppCompatActivity {
     private double rate;
     private String curr1,curr2;
@@ -43,10 +45,11 @@ public class SavedCurrencies extends AppCompatActivity {
 
         dr1= fs.collection(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
-        dr= fs.collection("Saves").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        dr= fs.collection("FavouritesActivity").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         HashMap<String,String> hs = new HashMap<>();
-
-        hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+aSave.rate+"\n "+ aSave.date);
+        //ΑΠΟΘΗΚΕΥΣΗ EXCHANGE RATE ΣΤΟ FIRESTORE
+        hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+aSave.rate );
+        hs.put("timestamp",aSave.date);
         hs.put("Details","Saving Details");
 
 

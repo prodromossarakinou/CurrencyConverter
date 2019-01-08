@@ -77,7 +77,7 @@ public class ToolBarFragment extends Fragment {
                         shareDialog.show(content);
                         break;
                     case R.id.favItem:
-                        Intent intent2 =(new Intent(getActivity(), Saves.class));
+                        Intent intent2 =(new Intent(getActivity(), FavouritesActivity.class));
                         startActivity(intent2);
                         break;
 

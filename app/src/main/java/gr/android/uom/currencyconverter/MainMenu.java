@@ -67,7 +67,7 @@ public class MainMenu extends AppCompatActivity {
 
 
     public void seeList(View v){
-        Intent intent = new Intent(this,Saves.class);
+        Intent intent = new Intent(this,FavouritesActivity.class);
         startActivity(intent);
     }
     @Override

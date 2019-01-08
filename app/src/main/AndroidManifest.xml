@@ -66,7 +66,7 @@
             android:screenOrientation="portrait" />
         </activity>
         <activity android:name=".SignUpActivity" android:screenOrientation="portrait" />
-        <activity android:name=".Saves"
+        <activity android:name=".FavouritesActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

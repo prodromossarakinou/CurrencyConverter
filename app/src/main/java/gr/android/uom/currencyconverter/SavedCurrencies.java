@@ -29,14 +29,13 @@ public class SavedCurrencies extends AppCompatActivity {
     FirebaseFirestore fs;
     DocumentReference dr;
     CollectionReference dr1;
-    ArrayList<String> data;
+//    ArrayList<String> data;
+    //κατασκευαστής
     public SavedCurrencies(double aRate,String aCurr1,String aCurr2,String aDate){
         rate = aRate;
         curr1 = aCurr1;
         curr2 = aCurr2;
         date = aDate;
-
-
     }
     public void Save(SavedCurrencies aSave){
         Log.d("edww", "Save: "+FirebaseAuth.getInstance().getCurrentUser().getEmail());
@@ -49,11 +48,12 @@ public class SavedCurrencies extends AppCompatActivity {
         dr= fs.collection("FavouritesActivity").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         HashMap<String,String> hs = new HashMap<>();
         //ΑΠΟΘΗΚΕΥΣΗ EXCHANGE RATE ΣΤΟ FIRESTORE
+        //ΠΡΩΤΑ ΤΟ ΤΑ ΝΟΜΙΣΜΑΤΑ ΚΑΙ ΤΟ RATE
         hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+aSave.rate );
+        //ΜΕΤΑ ΤΗΝ ΔΕΔΟΜΕΝΗ ΧΡΟΝΙΚΗ ΣΤΙΓΜΗ
         hs.put("timestamp",aSave.date);
-        hs.put("DeviceDetails", Build.BRAND + Build.MODEL);
-
-
+        //ΜΕΤΑ ΤΟ ΚΙΝΗΤΟ ΜΕΣΩ ΤΟΥ ΟΠΟΙΟΥ ΑΠΟΘΗΚΕΥΤΗΚΕ
+        hs.put("DeviceDetails", Build.BRAND +" "+ Build.MODEL);
 
         dr1.add(hs);
 

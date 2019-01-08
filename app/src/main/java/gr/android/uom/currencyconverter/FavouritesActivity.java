@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.facebook.share.widget.MessageDialog;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -50,12 +51,22 @@ public class FavouritesActivity extends AppCompatActivity {
         }
         lv = findViewById(R.id.savesList);
         tv = findViewById(R.id.savedItem);
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Delete(lv.getItemAtPosition(position).toString());
+                Log.d("onDEL", "onItemClick: "+ lv.getItemAtPosition(position).toString());
+                return false;
+            }
+        });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Delete(lv.getItemAtPosition(position).toString());
-                Log.d("onDEL", "onItemClick: "+ lv.getItemAtPosition(position).toString());
+                viewDetails(lv.getItemAtPosition(position).toString());
+                Log.d("PAME MESA", "onItemClick: "+ lv.getItemAtPosition(position).toString());
             }
+
+
         });
 
 
@@ -79,6 +90,35 @@ public class FavouritesActivity extends AppCompatActivity {
 
 
     }
+    public void viewDetails(String aText){
+        FirebaseFirestore fs;
+        for(MyFavourites f: lista){
+            if(f.getText().equals(aText)){
+                fs = FirebaseFirestore.getInstance();
+
+
+                final DocumentReference dr = fs.collection(FirebaseAuth.getInstance().getCurrentUser().getEmail()).document(f.getId());
+                dr.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                        final AlertDialog messageDialoge = new AlertDialog.Builder(FavouritesActivity.this)
+                                .setTitle("Saving Details")
+                                .setMessage("Saving Details: \n"
+                                +"Date&Time: "+documentSnapshot.getString("timestamp")+"\n"
+                                +"Device in which this favourite is saved: "+ documentSnapshot.getString("DeviceDetails"))
+                                .setPositiveButton("CONTINUE", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                }).create();
+                        messageDialoge.show();
+                    }
+                });
+
+            }
+        }
+    }
     public void Delete(String aText){
 
 
@@ -88,6 +128,7 @@ public class FavouritesActivity extends AppCompatActivity {
             Log.d("TEXTS", "Delete: " + f.getText()+"="+aText);
             if(f.getText().equals(aText)){
                 fs = FirebaseFirestore.getInstance();
+
                 final DocumentReference dr = fs.collection(FirebaseAuth.getInstance().getCurrentUser().getEmail()).document(f.getId());
                 final AlertDialog askForDelete = new AlertDialog.Builder(this)
                         .setTitle("Delete")
@@ -143,7 +184,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
             for(DocumentSnapshot s: queryDocumentSnapshots.getDocuments()){
                 Log.d("Aloha2", "onEvent: " + s.getString("SavedCurrency")+ " "+k);
-                MyFavourites f = new MyFavourites(s.getString("SavedCurrency")+" "+s.getString("timestamp"),s.getId());
+                MyFavourites f = new MyFavourites(s.getString("SavedCurrency")+" ",s.getId());
                 dataToReturn.add(f);
                 Log.d("PARESAVE RE", "onEvent: "+f.toString());
                 Log.d("prosas", "onEvent: "+ s.getId());

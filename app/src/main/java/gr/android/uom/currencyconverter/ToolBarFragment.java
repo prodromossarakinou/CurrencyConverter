@@ -20,14 +20,12 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.concurrent.atomic.AtomicReference;
 
-
-public class SignOutFrag extends Fragment {
+public class ToolBarFragment extends Fragment {
 
     private Toolbar toolbar;
     View rootView;
-    public SignOutFrag() {
+    public ToolBarFragment() {
 
     }
 
@@ -38,7 +36,7 @@ public class SignOutFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        rootView = inflater.inflate(R.layout.fragment_sign_out, container, false);
+        rootView = inflater.inflate(R.layout.fragment_tool_bar, container, false);
 
         MenuItem mItem = rootView.findViewById(R.id.favItem);
 

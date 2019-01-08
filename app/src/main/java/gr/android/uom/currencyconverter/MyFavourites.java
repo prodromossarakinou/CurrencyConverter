@@ -1,13 +1,21 @@
 package gr.android.uom.currencyconverter;
 
-public class Favourites implements Comparable<Favourites>{
+import android.annotation.SuppressLint;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+@SuppressLint("ParcelCreator")
+public class MyFavourites implements Comparable<MyFavourites> {
+
     private String text;
     private String id;
-
-    public Favourites(String text, String id) {
+    public MyFavourites(String text, String id) {
         this.text = text;
         this.id = id;
     }
+
+
+
 
     public String getText() {
         return text;
@@ -18,7 +26,7 @@ public class Favourites implements Comparable<Favourites>{
     }
 
     @Override
-    public int compareTo(Favourites o) {
+    public int compareTo(MyFavourites o) {
         return o.getText().compareTo(this.text);
 
     }
@@ -26,4 +34,6 @@ public class Favourites implements Comparable<Favourites>{
     public String toString(){
         return text;
     }
+
+
 }

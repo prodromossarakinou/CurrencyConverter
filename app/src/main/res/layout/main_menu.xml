@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="gr.android.uom.currencyconverter.SignOutFrag"
+        android:name="gr.android.uom.currencyconverter.ToolBarFragment"
         android:layout_width="379dp"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"

@@ -29,11 +29,11 @@ import javax.annotation.Nullable;
 
 public class Saves extends AppCompatActivity {
     ArrayList<String> ar;
-    ArrayList<Favourites> favs;
+
     private ListView lv;
     TextView tv;
-    ArrayAdapter<String> arrayAdapter;
-    private ArrayList<FavouritesParcelable> lista;
+
+    private ArrayList<MyFavourites> lista;
 
 
 
@@ -69,9 +69,9 @@ public class Saves extends AppCompatActivity {
     public void addToList(final int code) {
         FirebaseFirestore fs = FirebaseFirestore.getInstance();
         CollectionReference cr1;
-        ArrayList<FavouritesParcelable> data = new ArrayList<>();
+        ArrayList<MyFavourites> data = new ArrayList<>();
 
-        final ArrayList<FavouritesParcelable> dataToReturn = new ArrayList<>();
+        final ArrayList<MyFavourites> dataToReturn = new ArrayList<>();
         cr1 = fs.collection(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         Listener l = new Listener();
         cr1.addSnapshotListener(l);
@@ -83,7 +83,7 @@ public class Saves extends AppCompatActivity {
 
 
         FirebaseFirestore fs;
-        for(FavouritesParcelable f: lista){
+        for(MyFavourites f: lista){
             Log.d("TEXTS", "Delete: " + f.getText()+"="+aText);
             if(f.getText().equals(aText)){
                 fs = FirebaseFirestore.getInstance();
@@ -126,7 +126,7 @@ public class Saves extends AppCompatActivity {
     }
 
     public class Listener implements EventListener<QuerySnapshot>{
-        private ArrayList<FavouritesParcelable> dataToReturn;
+        private ArrayList<MyFavourites> dataToReturn;
         private ArrayList<String> strs;
         public Listener(){
 
@@ -142,7 +142,7 @@ public class Saves extends AppCompatActivity {
 
             for(DocumentSnapshot s: queryDocumentSnapshots.getDocuments()){
                 Log.d("Aloha2", "onEvent: " + s.getString("SavedCurrency")+ " "+k);
-                FavouritesParcelable f = new FavouritesParcelable(s.getString("SavedCurrency"),s.getId());
+                MyFavourites f = new MyFavourites(s.getString("SavedCurrency"),s.getId());
                 dataToReturn.add(f);
                 Log.d("prosas", "onEvent: "+ s.getId());
                 k++;
@@ -151,7 +151,7 @@ public class Saves extends AppCompatActivity {
             Collections.sort(dataToReturn);
             ArrayList<String> data = new ArrayList<>();
             ArrayList<String> dataId = new ArrayList<>();
-            for(Favourites f: dataToReturn){
+            for(MyFavourites f: dataToReturn){
                 data.add(f.toString());
                 dataId.add(f.getId());
 
@@ -161,7 +161,7 @@ public class Saves extends AppCompatActivity {
             lv.setAdapter(adapter);
 
 
-            for(FavouritesParcelable d: dataToReturn){
+            for(MyFavourites d: dataToReturn){
                 Log.d("kompleman1", "getList: "+d.getText());
             }
             setListt(dataToReturn);
@@ -169,7 +169,7 @@ public class Saves extends AppCompatActivity {
 
 
         }
-        public ArrayList<FavouritesParcelable> getData(){
+        public ArrayList<MyFavourites> getData(){
             Log.d("PARESIZE", "getData: "+dataToReturn.size());
             return dataToReturn;
         }
@@ -178,15 +178,12 @@ public class Saves extends AppCompatActivity {
 
     }
 
-    public void setListt(ArrayList<FavouritesParcelable> a){
+    public void setListt(ArrayList<MyFavourites> a){
         lista = new ArrayList<>(a);
         Log.d("grigoris", "setListt: ."+lista.size());
-        Intent intent = new Intent(Saves.this,SavedCurrencies.class);
-        intent.putParcelableArrayListExtra("favs",lista);
-
 
     }
-    public  ArrayList<FavouritesParcelable> getListt(){
+    public  ArrayList<MyFavourites> getListt(){
         return lista;
     }
 

@@ -173,25 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             Log.d(TAG, "onComplete: " + user.getDisplayName());
-                            CollectionReference dbUsers = db.collection("users");
-                            Users appUser = new Users(user.getDisplayName(),user.getUid(),user.getEmail());
-                            Log.d("dais", "onComplete: " +user.getDisplayName() + user.getUid()+user.getEmail());
-                            dbUsers.add(appUser)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                        @Override
-                                        public void onSuccess(DocumentReference documentReference) {
 
-                                            Log.d("eees", "onSuccess: ");
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            Log.d("eees", "onFailure: "+e.getMessage());
-                                        }
-
-                                    });
                         Intent intent = new Intent(LoginActivity.this,MainMenu.class);
                         startActivity(intent);
 

@@ -1,31 +1,20 @@
 package gr.android.uom.currencyconverter;
 
-import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookActivity;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,10 +31,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-
-import java.util.Arrays;
-import java.util.Currency;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -144,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     finish();
-                    Intent intent = new Intent(LoginActivity.this, SignInActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainMenu.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 } else {
@@ -160,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
 
             finish();
-            startActivity(new Intent(this, SignInActivity.class));
+            startActivity(new Intent(this, MainMenu.class));
         }
     }
     public void Connecting(View v){
@@ -207,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
                                         }
 
                                     });
-                        Intent intent = new Intent(LoginActivity.this,SignInActivity.class);
+                        Intent intent = new Intent(LoginActivity.this,MainMenu.class);
                         startActivity(intent);
 
                         } else {

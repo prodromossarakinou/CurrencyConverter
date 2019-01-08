@@ -103,7 +103,7 @@ public class SignOutFrag extends Fragment {
         menu.clear();
 
         inflater.inflate(R.menu.menu_, menu);
-//        String activityName = gr.android.uom.currencyconverter.SignInActivity.class.toString();
+//        String activityName = gr.android.uom.currencyconverter.MainMenu.class.toString();
 //
 //        String thisActivityName = getActivity().toString().substring(0,getActivity().toString().indexOf("@"));
 //        Log.d("HELLO", "onStart: "+ activityName+ "  next class " + thisActivityName);

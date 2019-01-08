@@ -80,7 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         user.updateProfile(profileUpdates);
                         finish();
-                        startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+                        startActivity(new Intent(SignUpActivity.this, MainMenu.class));
                     }
                     else{
                         Toast.makeText(SignUpActivity.this, "We need a name to continue!", Toast.LENGTH_SHORT).show();

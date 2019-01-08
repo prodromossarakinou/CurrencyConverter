@@ -10,17 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +27,7 @@ import java.util.ArrayList;
 
 
 
-public class SignInActivity extends AppCompatActivity {
+public class MainMenu extends AppCompatActivity {
     private FirebaseUser user;
 
     private TextView nameView;
@@ -50,7 +45,7 @@ public class SignInActivity extends AppCompatActivity {
         //download data first of all
         DownloadData downloadData = new DownloadData();
         downloadData.execute(myUrl);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.main_menu);
         user = FirebaseAuth.getInstance().getCurrentUser();
         listOfNames = new ArrayList<>();
         listofCodes = new ArrayList<>();
@@ -81,7 +76,7 @@ public class SignInActivity extends AppCompatActivity {
 
     public void openCurrenciesView (View view){
         Intent intent;
-        intent = new Intent(SignInActivity.this,CurrencyView.class);
+        intent = new Intent(MainMenu.this,CurrencyView.class);
         if(listofCodes.isEmpty() || listOfNames.isEmpty()){
             ArrayList<String> emptyNames = new ArrayList<>();
             ArrayList<String> emptyCodes = new ArrayList<>();
@@ -100,7 +95,7 @@ public class SignInActivity extends AppCompatActivity {
     }
     public void openConverter (View view){
         Intent intent;
-        intent = new Intent(SignInActivity.this,ConvertActivity.class);
+        intent = new Intent(MainMenu.this,ConvertActivity.class);
         if(listofCodes.isEmpty()){
             ArrayList<String> emptyCodes = new ArrayList<>();
             emptyCodes.add("   ");

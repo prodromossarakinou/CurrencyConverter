@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,7 +32,7 @@ import javax.annotation.Nullable;
 
 public class FavouritesActivity extends AppCompatActivity {
     ArrayList<String> ar;
-
+    AdapterView.OnItemClickListener listener;
     private ListView lv;
     TextView tv;
 
@@ -59,19 +60,19 @@ public class FavouritesActivity extends AppCompatActivity {
                 return false;
             }
         });
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 viewDetails(lv.getItemAtPosition(position).toString());
-                Log.d("PAME MESA", "onItemClick: "+ lv.getItemAtPosition(position).toString());
+
             }
+        };
+        lv.setOnItemClickListener(listener);
 
-
-        });
 
 
         this.addToList(0);
-//        this.getList();
+//      
 //
 
 
@@ -122,7 +123,7 @@ public class FavouritesActivity extends AppCompatActivity {
     public void Delete(String aText){
 
 
-
+        lv.setOnItemClickListener(null);
         FirebaseFirestore fs;
         for(MyFavourites f: lista){
             Log.d("TEXTS", "Delete: " + f.getText()+"="+aText);
@@ -136,10 +137,12 @@ public class FavouritesActivity extends AppCompatActivity {
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                lv.setOnItemClickListener(listener);
                                 dr.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d("DELETED", "onSuccess: ");
+
                                     }
                                 });
                             }
@@ -150,11 +153,19 @@ public class FavouritesActivity extends AppCompatActivity {
                                 dr.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                                     @Override
                                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-
+                                        lv.setOnItemClickListener(listener);
                                     }
+
                                 });
                             }
-                        }).create();
+                        }).setOnKeyListener(new DialogInterface.OnKeyListener() {
+                            @Override
+                            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                                lv.setOnItemClickListener(listener);
+                                return false;
+                            }
+                        })
+                        .create();
                 askForDelete.show();
 
             }
@@ -186,10 +197,7 @@ public class FavouritesActivity extends AppCompatActivity {
                 Log.d("Aloha2", "onEvent: " + s.getString("SavedCurrency")+ " "+k);
                 MyFavourites f = new MyFavourites(s.getString("SavedCurrency")+" ",s.getId());
                 dataToReturn.add(f);
-                Log.d("PARESAVE RE", "onEvent: "+f.toString());
-                Log.d("prosas", "onEvent: "+ s.getId());
-                Log.d("PAREPAREPARE ","onEvent "+ Build.BRAND);
-                Log.d("PAREPAREPARE ","onEvent "+ Build.MODEL);
+
                 k++;
             }
 

@@ -72,7 +72,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
 
         this.addToList(0);
-//      
+//
 //
 
 
@@ -163,6 +163,11 @@ public class FavouritesActivity extends AppCompatActivity {
                             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
                                 lv.setOnItemClickListener(listener);
                                 return false;
+                            }
+                        }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                lv.setOnItemClickListener(listener);
                             }
                         })
                         .create();

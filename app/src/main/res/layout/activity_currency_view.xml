@@ -23,14 +23,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="380dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/archivo_black"
         android:gravity="center_vertical"
-        android:text="   CODE:  Full Name"
+        android:text="CODE:  Full Name"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

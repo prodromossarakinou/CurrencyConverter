@@ -5,25 +5,17 @@
 
     <TextView
         android:id="@+id/text1"
-        android:layout_width="347dp"
+        android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="37dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
         android:fontFamily="@font/archivo_black"
         android:gravity="center_vertical"
         android:text=""
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text1"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_vertical"
-        android:textSize="24sp" />
 </RelativeLayout>

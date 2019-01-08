@@ -2,6 +2,7 @@ package gr.android.uom.currencyconverter;
 
 import android.content.Intent;
 import android.content.pm.SigningInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -50,7 +51,7 @@ public class SavedCurrencies extends AppCompatActivity {
         //ΑΠΟΘΗΚΕΥΣΗ EXCHANGE RATE ΣΤΟ FIRESTORE
         hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+aSave.rate );
         hs.put("timestamp",aSave.date);
-        hs.put("Details","Saving Details");
+        hs.put("DeviceDetails", Build.BRAND + Build.MODEL);
 
 
 

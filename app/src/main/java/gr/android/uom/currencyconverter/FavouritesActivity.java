@@ -2,6 +2,7 @@ package gr.android.uom.currencyconverter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -146,7 +147,8 @@ public class FavouritesActivity extends AppCompatActivity {
                 dataToReturn.add(f);
                 Log.d("PARESAVE RE", "onEvent: "+f.toString());
                 Log.d("prosas", "onEvent: "+ s.getId());
-                Log.d("PAREPAREPARE ","onEvent "+ android.os.Build.MODEL);
+                Log.d("PAREPAREPARE ","onEvent "+ Build.BRAND);
+                Log.d("PAREPAREPARE ","onEvent "+ Build.MODEL);
                 k++;
             }
 

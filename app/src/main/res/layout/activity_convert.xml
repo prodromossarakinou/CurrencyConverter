@@ -11,14 +11,11 @@
         android:layout_width="120dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/ammountText"
         app:layout_constraintEnd_toStartOf="@+id/toText"
         app:layout_constraintStart_toEndOf="@+id/fromText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
 
@@ -27,15 +24,11 @@
         android:layout_width="116dp"
         android:layout_height="65dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/ammountText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toEndOf="@+id/toText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintTop_toTopOf="@+id/fromSpinner" />
 
     <EditText
         android:id="@+id/ammountText"
@@ -73,7 +66,7 @@
         android:layout_width="61dp"
         android:layout_height="65dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
         android:text="from:"
@@ -90,7 +83,6 @@
         android:layout_width="47dp"
         android:layout_height="65dp"
         android:layout_marginStart="132dp"
-        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:gravity="center_vertical"
         android:text="to:"
@@ -100,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/fromText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/fromText" />
 
     <Button
         android:id="@+id/button"
@@ -135,14 +127,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
     <fragment
         android:id="@+id/fragment"
         android:name="gr.android.uom.currencyconverter.ToolBarFragment"
-        android:layout_width="379dp"
-        android:layout_height="49dp"
+        android:layout_width="380dp"
+        android:layout_height="46dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment3" />
+
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="gr.android.uom.currencyconverter.DailyFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

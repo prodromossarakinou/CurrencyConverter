@@ -164,7 +164,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
                             }
                         })
-                        .setNegativeButton("View Details", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dr.addSnapshotListener(new EventListener<DocumentSnapshot>() {

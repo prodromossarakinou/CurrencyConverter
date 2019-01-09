@@ -8,25 +8,22 @@
 
     <Spinner
         android:id="@+id/fromSpinner"
-        android:layout_width="120dp"
-        android:layout_height="65dp"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/toText"
+        android:layout_marginTop="38dp"
+        android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/fromText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment" />
 
     <Spinner
 
 
         android:id="@+id/toSpinner"
-        android:layout_width="116dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/toText"
         app:layout_constraintTop_toTopOf="@+id/fromSpinner" />
 
@@ -35,7 +32,7 @@
         android:layout_width="216dp"
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Ammount"
@@ -44,39 +41,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/fromSpinner" />
 
     <TextView
         android:id="@+id/result"
         android:layout_width="304dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="170dp"
+        android:layout_marginTop="32dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.94" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
         android:id="@+id/fromText"
         android:layout_width="61dp"
         android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:text="from:"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ammountText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/toText"
@@ -132,7 +127,7 @@
         android:id="@+id/fragment"
         android:name="gr.android.uom.currencyconverter.ToolBarFragment"
         android:layout_width="380dp"
-        android:layout_height="46dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"

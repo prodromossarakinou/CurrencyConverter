@@ -35,10 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
 
-        android:layout_marginEnd="8dp"
         android:src="@drawable/nullimage"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="@+id/eurGif" />
 
@@ -46,7 +44,6 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Today's rates"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -83,13 +80,5 @@
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/eurGif" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

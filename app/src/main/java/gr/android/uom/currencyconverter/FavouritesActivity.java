@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.facebook.FacebookActivity;
 import com.facebook.share.widget.MessageDialog;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,11 +34,12 @@ import javax.annotation.Nullable;
 public class FavouritesActivity extends AppCompatActivity {
     ArrayList<String> ar;
     AdapterView.OnItemClickListener listener;
+    AdapterView.OnItemLongClickListener longListener;
     private ListView lv;
     TextView tv;
-
+    boolean clicked;
     private ArrayList<MyFavourites> lista;
-
+    private Bundle bundle;
 
 
     @Override
@@ -45,30 +47,40 @@ public class FavouritesActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
-
+        bundle = savedInstanceState;
         ar = new ArrayList<>();
         for(int i = 0; i<23; i++){
             ar.add(i+" Hello World");
         }
         lv = findViewById(R.id.savesList);
         tv = findViewById(R.id.savedItem);
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        clicked = false;
+
+
+
+
+
+        longListener = new AdapterView.OnItemLongClickListener() {
+
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Delete(lv.getItemAtPosition(position).toString());
-                Log.d("onDEL", "onItemClick: "+ lv.getItemAtPosition(position).toString());
-                return false;
+                Log.d("TAGGS", "onItemClick: "+view.isLongClickable());
+
+                    Delete(lv.getItemAtPosition(position).toString());
+                return true;
             }
-        });
+
+        };
         listener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 viewDetails(lv.getItemAtPosition(position).toString());
-
             }
         };
-        lv.setOnItemClickListener(listener);
 
+        lv.setLongClickable(true);
+        lv.setOnItemLongClickListener(longListener);
+        lv.setOnItemClickListener(listener);
 
 
         this.addToList(0);
@@ -82,9 +94,9 @@ public class FavouritesActivity extends AppCompatActivity {
     public void addToList(final int code) {
         FirebaseFirestore fs = FirebaseFirestore.getInstance();
         CollectionReference cr1;
-        ArrayList<MyFavourites> data = new ArrayList<>();
 
-        final ArrayList<MyFavourites> dataToReturn = new ArrayList<>();
+
+
         cr1 = fs.collection(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         Listener l = new Listener();
         cr1.addSnapshotListener(l);
@@ -102,28 +114,31 @@ public class FavouritesActivity extends AppCompatActivity {
                 dr.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                        final AlertDialog messageDialoge = new AlertDialog.Builder(FavouritesActivity.this)
-                                .setTitle("Saving Details")
-                                .setMessage("Saving Details: \n"
-                                +"Date&Time: "+documentSnapshot.getString("timestamp")+"\n"
-                                +"Device in which this favourite is saved: "+ documentSnapshot.getString("DeviceDetails"))
-                                .setPositiveButton("CONTINUE", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
 
-                                    }
-                                }).create();
-                        messageDialoge.show();
+                        if(documentSnapshot.getString("timestamp")!=null) {
+                            final AlertDialog messageDialoge = new AlertDialog.Builder(FavouritesActivity.this)
+                                    .setTitle("Saving Details")
+                                    .setMessage("Saving Details: \n"
+                                            +"Date&Time: "+documentSnapshot.getString("timestamp")+"\n"
+                                            +"Device in which this favourite is saved: "+ documentSnapshot.getString("DeviceDetails"))
+                                    .setPositiveButton("CONTINUE", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).create();
+                            messageDialoge.show();
+                        }
                     }
                 });
-
+                break;
             }
         }
     }
-    public void Delete(String aText){
+    public void Delete(final String aText){
 
 
-        lv.setOnItemClickListener(null);
+
         FirebaseFirestore fs;
         for(MyFavourites f: lista){
             Log.d("TEXTS", "Delete: " + f.getText()+"="+aText);
@@ -137,23 +152,25 @@ public class FavouritesActivity extends AppCompatActivity {
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                lv.setOnItemClickListener(listener);
+
                                 dr.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d("DELETED", "onSuccess: ");
 
                                     }
+
                                 });
+
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("View Details", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dr.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                                     @Override
                                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                                        lv.setOnItemClickListener(listener);
+
                                     }
 
                                 });
@@ -161,20 +178,22 @@ public class FavouritesActivity extends AppCompatActivity {
                         }).setOnKeyListener(new DialogInterface.OnKeyListener() {
                             @Override
                             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                                lv.setOnItemClickListener(listener);
                                 return false;
                             }
                         }).setOnCancelListener(new DialogInterface.OnCancelListener() {
                             @Override
                             public void onCancel(DialogInterface dialog) {
-                                lv.setOnItemClickListener(listener);
+
                             }
                         })
                         .create();
                 askForDelete.show();
 
+                break;
             }
+
         }
+
     }
     @Override
     public void onBackPressed(){

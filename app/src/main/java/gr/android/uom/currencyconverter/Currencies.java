@@ -1,15 +1,8 @@
 package gr.android.uom.currencyconverter;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
-
-public class Currencies  {
+public class Currencies{
 
     public static final String TITLE_KEY = "Code";
     public static final String BODY_KEY = "Name";

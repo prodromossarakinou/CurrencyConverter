@@ -35,73 +35,59 @@ public class ConvertActivity extends AppCompatActivity {
     private String from = "GBP";
     private String to2 = "EUR";
     private String API_KEY = "AcWTjGGE6fuTVxlZZP1bRyifBKVkuoGs";
-    private float ammount = 10;
+
     private String myUrl;
     private String endpoint = "convert";
     private Spinner fromSpinner;
     private Spinner toSpinner;
-    private TextView fromT;
-    private TextView toT;
     private EditText ammountText;
     private TextView result;
-    private Double value;
-    private String data;
     private Button saveButton;
     private SavedCurrencies sc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convert);
+        //Δήλωση των γραφικών συστατικών για επεξεργασία τους μετέπειτα.
         fromSpinner = findViewById(R.id.fromSpinner);
         toSpinner = findViewById(R.id.toSpinner);
         saveButton = findViewById(R.id.saveButton);
-
-        Intent intent = getIntent();
-        final ArrayList<String> codesList = intent.getStringArrayListExtra("codes_list");
-        ArrayAdapter<String> Aa = new ArrayAdapter<>(this,R.layout.list_item,R.id.text,codesList);
-        fromSpinner.setAdapter(Aa);
-        toSpinner.setAdapter(Aa);
-        Log.d(TAG, "onCreate: "+fromSpinner.getSelectedItem().toString());
-
-
         ammountText = findViewById(R.id.ammountText);
         result = findViewById(R.id.result);
-        fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        //ενσωμάτωση της λίστας με title codes_list απο την MainMenu(activity)
+        Intent intent = getIntent();
+        final ArrayList<String> codesList = intent.getStringArrayListExtra("codes_list");
+        //Δημιουργία adapter για να εμφανίζει τα δεδομένα της codes_list
+        //1η παράμετρος context: ConvertActivity δηλαδη στην activity στην οποία είναι η λίστα
+        //2η παράμετρος το layout το οποίο περιέχει το γραφικό συστατικό το οποίο θα περιέχει η λίστα
+        //3η παράμετρος το id απο το γραφικό συστατικό το οποίο περιέχεται στο παραπάνω layout
+        //4η παράμετρος η arrayList που θέλω να εμφανίζεται στο listView
+        ArrayAdapter<String> Aa = new ArrayAdapter<>(this,R.layout.list_item,R.id.text,codesList);
+        //Προσθήκη adapter στα δύο πανωμυότυπα listView
+        fromSpinner.setAdapter(Aa);
+        toSpinner.setAdapter(Aa);
 
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapter) {
-
-            }
-        });
-        toSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
     }
+
+
+    //μέθοδος η οποία εκτελεί το Convert μέσω API
     public void Convert(View view){
+        //Αρχικοποίηση των μεταβλητων με το Item που επέλεξε ο χρήστης απο το Spinner
         from = fromSpinner.getSelectedItem().toString();
         to2 = toSpinner.getSelectedItem().toString();
-
+        //ΕΛΕΓΧΟΣ ΕΑΝ ΥΠΑΡΧΕΙ ΔΩΣΜENO ammount
         if(!ammountText.getText().toString().isEmpty()) {
             if(!from.equals(to2)) {
+                //δημιουργία URL για το Convert το οποίο μας επιστρέφει το μήνυμα.
                 myUrl = "https://forex.1forge.com/1.0.3/" + endpoint + "?from=" + from + "&to=" + to2 + "&quantity=" + ammountText.getText().toString() + "&api_key=" + API_KEY;
                 DownloadData dlData = new DownloadData();
+                //κατέβασμα δεδομένων απο το API μέσω του AsyncTask.
                 dlData.execute(myUrl);
             }
+            //εμφάνιση μυνήματος σε περίπτωη που χρήστης δεν επιλέξει δυο διαφορετικά νομίσματα
+            //διότι δεν επιστρέφει αποτελέσματα το API
             else{
                 Toast ts = null;
                 ts.makeText(getApplicationContext(),"Please select difference currencies to convert!",Toast.LENGTH_SHORT).show();
@@ -109,47 +95,60 @@ public class ConvertActivity extends AppCompatActivity {
             }
 
         }
+        //Εμφάνιση μηνύματος στον χρήστη σε περίπτωση που δεν έχει επιλέξει ammount
+        //Υ.Γ. το text του ammount έχει την επιλογή μόνο για numbers οπότε γλιτώνουμε αρκετά σφάλματα
         else{
             Toast ts = null;
             ts.makeText(getApplicationContext(),"Please set an ammount",Toast.LENGTH_SHORT).show();
         }
 
     }
+    //OnClick μέθοδος για το Button Save
+    //Δεν υπαρχει extend στην κλάση ή οτιδήποτε σε κάποιον listener
+    //επειδη είναι καθορισμένη η OnClick μέθοδος μέσω της XML
     public void saveCurr(View v){
         sc.Save(sc);
+        //εμφάνιση Toast στον χρήστη οτι το Favourite του αποθηκεύτηκε επιτυχώς
         Toast.makeText(this,"Favourite saved",Toast.LENGTH_SHORT).show();
     }
 
 
-
+    //Δημιουργία κλάσης που κληρονομεί το asyncTask και χρησιμοποιείται για να κατεβάσει τα δεδομένα.
     public class DownloadData extends AsyncTask<String,String,String> {
 
         @Override
         protected String doInBackground(String... strings) {
-            Log.d(TAG, "doInBackground starts with: " + strings[0]);
+
+            //ανάθεση στο postData τα δεδομένα απο την JSON
             String postData = downloadJSON(strings[0]);
-            if(postData == null){
-                Log.e(TAG, "doInBackground: Error downloading from url " + strings[0] );
-            }
+
             return postData;
         }
+        //η κλαση η οποία κατεβάζει τα δεδομένα
+        //Παράμετρος: δέχεται το URLL του API
         private String downloadJSON(String urlPath) {
+            //δημιουργεία StringBuilder για να προσθέσουμε στην συνέχεια τα δεδομένα του API
+
             StringBuilder sb = new StringBuilder();
 
             try{
                 URL url = new URL(urlPath);
+                //Εκκίνηση σύνδεσης με το API
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 int reponseCode = connection.getResponseCode();
                 Log.d(TAG, "downloadJSON: Response code was " + reponseCode);
-
+                //δημιουργία και εκκίνηση BufferReader
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
                 String line = reader.readLine();
                 while(line != null){
+                    //προσθήκη κάθε γραμμής JSON που διαβάζεται απο το URL στο
                     sb.append(line).append("\n");
                     line = reader.readLine();
                 }
-
+                //Κλείσιμο σύνδεσης με το API
+                connection.disconnect();
+                //κλεισιμο του BufferedReader
                 reader.close();
 
             } catch (MalformedURLException e) {
@@ -157,43 +156,44 @@ public class ConvertActivity extends AppCompatActivity {
             } catch (IOException e) {
                 Log.e(TAG, "downloadJSON: io error ",e);
             }
-
+            //επιστροφή του StringBuilder σε String το οποίο είναι τα JSONData
+            //Δηλαδη δεδομένα σε μορφή JSON
             return sb.toString();
         }
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
         protected void onPostExecute(String jsonData) {
-
-
-
             super.onPostExecute(jsonData);
-            Log.d(TAG, "onPostExecute parameter is " + jsonData );
+            //επεξεργασία των δεδομένων της JSON
+
+
 
             try {
                 JSONObject jsonObject= new JSONObject(jsonData);
+                //το αποτέλεσμα του Convert με παραμέτρους τα δυο νομίσματα που εισαγε ο χρήστης
+                //και το ammount
                 Double text = jsonObject.getDouble("value");
+                //Παίρνω το value και το κάνω να είναι με μόνο δύο δεκαδικά ψηφία
                 DecimalFormat format = new DecimalFormat("#.00");
-
+                //Σε περίπτωση που το formatαρισμένο double είναι .00 θα έχω θέμα με την διαίρεση μετέπειτα
+                //οπότε παίρνω περιπτώσεις
                 if(format.format(text).equals(".00")){
-                    Log.d("0nika", "onPostExecute: ");
                     result.setText(ammountText.getText().toString()+" "+ fromSpinner.getSelectedItem().toString()+" doesn't worth any "+
                             toSpinner.getSelectedItem().toString()+".");
-
                 }
+                //σε περίπτωση που δεν έχω .00
                 else{
+                    //Εμφανίζω αποτέλεσμα
                     result.setText(ammountText.getText().toString()+" " +fromSpinner.getSelectedItem().toString()+
                             " is worth " +format.format(text)+" "+toSpinner.getSelectedItem().toString() +".");
+                    //και εμφανίζω στον Χρήστη την επιλογή Save
+                    //Κάνω VISIBLE το BUTTON
                     saveButton.setVisibility(View.VISIBLE);
                     double rate= text/(Double.parseDouble(ammountText.getText().toString()));
                     DecimalFormat rateFormat = new DecimalFormat("#.0000");
                     String curr1 = fromSpinner.getSelectedItem().toString();
                     String curr2 = toSpinner.getSelectedItem().toString();
-                    String date = "29/12/2018";
-
+                    //Δημιουργώ τώρα το αντικείμενο sc το οποίο χρησιμοποιείται στην μέθοδο SaveCurr
                     sc = new SavedCurrencies(Double.parseDouble(rateFormat.format(rate)),curr1,curr2,Calendar.getInstance().getTime().toString());
 
 

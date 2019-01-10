@@ -20,9 +20,9 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.google.firebase.auth.FirebaseAuth;
 
-
+//Fragment Το οποίο περιέχει το Menu:
 public class ToolBarFragment extends Fragment {
-
+    //Επειδή έχω διαγράψει το ActionBar το menu θα είναι πανω στο toolbar;
     private Toolbar toolbar;
     View rootView;
     public ToolBarFragment() {
@@ -36,57 +36,53 @@ public class ToolBarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate to layout file tou fragment
         rootView = inflater.inflate(R.layout.fragment_tool_bar, container, false);
-
-        MenuItem mItem = rootView.findViewById(R.id.favItem);
-
         toolbar = rootView.findViewById(R.id.toolbar);
-
+        //inflate το layout file του Menu
         toolbar.inflateMenu(R.menu.menu_);
-
-//        setHasOptionsMenu(true);
-
         return rootView;
     }
+    //επικάλυψη της onStart
     @Override
     public void onStart() {
         super.onStart();
 
-
+        //Προσθήκη τίτλου στο Toolbar το οποίο θα είναι το username του χρήστη
+        //το οποίο το παίρνω απο το userAuthentication της Firebase
         toolbar.setTitle(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-        Log.d("PROSAPRSOA", "onStart: "+getActivity().toString());
-
+        //Προσθήκη Click listener στο Menu
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()){
 
-                    case R.id.signOut:
+                    case R.id.signOut: //Περίπτωση που θα πατηθεί το Sign Out
+                        //log out και σε περιπτωση που ο χρήστης είναι συνδεμένος μέσω e-mail/password
+                        //και σε περιπτωση που είναι συνδεμένος μέσω Facebook Authentication
                         FirebaseAuth.getInstance().signOut();
                         LoginManager.getInstance().logOut();
+                        //εκκίνηση activity LoginActivity
                         Intent intent1 = (new Intent(getActivity(), LoginActivity.class));
                         startActivity(intent1);
                         break;
-                    case R.id.menu_item_share:
+                    case R.id.menu_item_share: //Περίπτωση που θα πατηθεί SHARE
+                        //ο χρήστης έχει την επιλογή να κάνει Share την εφαρμογή στο Facebook
                         ShareLinkContent content = new ShareLinkContent.Builder()
-                                .setQuote("This is CurrencyConverter App, Download it for free")
+                                .setQuote("This is CurrencyConverter App, Download it for free") //και προσθέτετε και αυτό το σχόλιο
                                 .setContentUrl(Uri.parse("https://drive.google.com/file/d/12GNgisvGEcldLJqp1UTnwKsYst0fuhyh/view?usp=sharing"))
-
                                 .build();
+                        //δημιουργία μηνυματος χρήστη
                         ShareDialog shareDialog = new ShareDialog(getActivity());
+                        //εμφάνιση επιλογής για SHARE
                         shareDialog.show(content);
                         break;
-                    case R.id.favItem:
+                    case R.id.favItem: //Περίπτωση που θα πατηθεί το Favourites
+                        //Εκκίνηση της Activity FavouritesActivity
                         Intent intent2 =(new Intent(getActivity(), FavouritesActivity.class));
                         startActivity(intent2);
                         break;
-
-
                 }
-
-
-
-
                 return false;
             }
         });
@@ -95,24 +91,4 @@ public class ToolBarFragment extends Fragment {
 
     }
 
-
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // TODO Add your menu entries here
-        menu.clear();
-
-        inflater.inflate(R.menu.menu_, menu);
-//        String activityName = gr.android.uom.currencyconverter.MainMenu.class.toString();
-//
-//        String thisActivityName = getActivity().toString().substring(0,getActivity().toString().indexOf("@"));
-//        Log.d("HELLO", "onStart: "+ activityName+ "  next class " + thisActivityName);
-//        if(activityName.equals("class "+thisActivityName)){
-//
-//            MenuItem item = menu.getItem(R.id.favItem);
-//            item.setVisible(false);
-//        }
-//        MenuItem item = menu.getItem(R.id.favItem);
-//        item.setVisible(true);
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 }

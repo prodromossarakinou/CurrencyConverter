@@ -70,6 +70,9 @@
         <activity android:name=".FavouritesActivity"
             android:screenOrientation="portrait">
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="98e79978837518e7fd07e67d5a25abe0f4969222" />
     </application>
 
 </manifest>

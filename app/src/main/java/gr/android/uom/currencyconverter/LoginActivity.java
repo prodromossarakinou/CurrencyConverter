@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import io.fabric.sdk.android.Fabric;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_login);
         //αρχικοποίηση γραφικών συστατικών για επεξεργασία στην συνέχεια
         editTextEmail = findViewById(R.id.emailText);

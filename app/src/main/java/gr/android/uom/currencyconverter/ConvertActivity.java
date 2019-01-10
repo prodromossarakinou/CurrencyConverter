@@ -25,6 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -190,11 +191,12 @@ public class ConvertActivity extends AppCompatActivity {
                     //Κάνω VISIBLE το BUTTON
                     saveButton.setVisibility(View.VISIBLE);
                     double rate= text/(Double.parseDouble(ammountText.getText().toString()));
-                    DecimalFormat rateFormat = new DecimalFormat("#.0000");
+                    NumberFormat rateFormat = NumberFormat.getInstance();
                     String curr1 = fromSpinner.getSelectedItem().toString();
                     String curr2 = toSpinner.getSelectedItem().toString();
                     //Δημιουργώ τώρα το αντικείμενο sc το οποίο χρησιμοποιείται στην μέθοδο SaveCurr
-                    sc = new SavedCurrencies(Double.parseDouble(rateFormat.format(rate)),curr1,curr2,Calendar.getInstance().getTime().toString());
+                    //
+                    sc = new SavedCurrencies(rate,curr1,curr2,Calendar.getInstance().getTime().toString());
 
 
                 }

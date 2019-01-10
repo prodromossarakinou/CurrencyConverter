@@ -56,6 +56,7 @@ public class MainMenu extends AppCompatActivity {
     //Μέθοδος τύπου OnClick συνδεμένη μέσω XML με το Button Favourites
     public void seeList(View v){
         //Χρησιμοποιέιτα το Intent για την εναλλαγή των Activity
+
         Intent intent;
         intent = new Intent(this,FavouritesActivity.class);
         //εκκίνηση άλλης activity.

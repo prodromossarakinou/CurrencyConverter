@@ -43,7 +43,9 @@ public class SavedCurrencies extends AppCompatActivity {
         HashMap<String,String> hs = new HashMap<>();
         //αποθηκεύω τα δεδομένα σε ένα hashmap
         //ΠΡΩΤΑ ΤΟ ΤΑ ΝΟΜΙΣΜΑΤΑ ΚΑΙ ΤΟ RATE
-        hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+aSave.rate );
+        Double rate = aSave.getRate();
+        String sRate = String.format("%.2f",rate);
+        hs.put("SavedCurrency","  "+aSave.curr1 + " to " + aSave.curr2 +" " +"Rate: "+sRate);
         //ΜΕΤΑ ΤΗΝ ΔΕΔΟΜΕΝΗ ΧΡΟΝΙΚΗ ΣΤΙΓΜΗ
         hs.put("timestamp",aSave.date);
         //ΜΕΤΑ ΤΟ ΚΙΝΗΤΟ ΜΕΣΩ ΤΟΥ ΟΠΟΙΟΥ ΑΠΟΘΗΚΕΥΤΗΚΕ
@@ -55,6 +57,7 @@ public class SavedCurrencies extends AppCompatActivity {
 
     }
 
-
-
+    public double getRate() {
+        return rate;
+    }
 }

@@ -15,9 +15,9 @@ import java.util.ArrayList;
 //Activity στην οποία εμφανίζονται μέσω API τα διαθέσιμα νομίσματα που περιέχονται στην εφαρμογή
 public class CurrencyView extends AppCompatActivity {
     private ListView listView;
-    private ArrayList<Currencies> curs;
+
     private static final String TAG = "Prosa";
-    private ArrayList<Currencies> currencies;
+    // λίστα στην οποία δημιουργούνται τα String τα οποία μετέπειτα μπαίνουν στην λίστα.
     ArrayList<String> listOfStrings ;
 
     @Override
@@ -42,10 +42,4 @@ public class CurrencyView extends AppCompatActivity {
         listView.setAdapter(aA);
 
     }
-
-
-
-
-
-
 }

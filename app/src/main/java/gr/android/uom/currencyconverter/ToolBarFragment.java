@@ -87,8 +87,6 @@ public class ToolBarFragment extends Fragment {
             }
         });
 
-
-
     }
 
 }

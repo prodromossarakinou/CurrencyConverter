@@ -269,7 +269,4 @@ public class FavouritesActivity extends AppCompatActivity {
         }
 
     }
-
-
-
 }

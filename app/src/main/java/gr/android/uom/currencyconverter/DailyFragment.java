@@ -29,7 +29,7 @@ import pl.droidsonroids.gif.GifImageView;
 //Δηλαδει πώς συμπεριφέρονται τρια(3) βασικά νομίσματα (USD,EUR,BTC)
 public class DailyFragment extends Fragment {
     private View rootView;
-    private String API_KEY = "1e086fbf519d7a8b97ac3035428977d9";
+    private String API_KEY = "1e086fbf519d7a8b97ac3035428977d9"; //2ndAPI_KEY: 5c397e6543685b082726be1e22ba69ee 3rd API_KEY: e44dbe1727d627545c4b5f9a86541bea
     private String latestDay = "latest";
     private String myUrlForToday;
     private Double usdRateToday;

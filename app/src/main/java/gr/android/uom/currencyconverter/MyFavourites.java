@@ -33,6 +33,4 @@ public class MyFavourites implements Comparable<MyFavourites> {
     public String toString(){
         return text;
     }
-
-
 }

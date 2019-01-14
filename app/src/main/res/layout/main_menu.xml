@@ -8,9 +8,9 @@
 
     <Button
         android:id="@+id/btnCurrencies"
-        android:layout_width="291dp"
+        android:layout_width="0dp"
         android:layout_height="71dp"
-        android:layout_marginBottom="8dp"
+        android:background="@drawable/com_facebook_auth_dialog_cancel_background"
         android:fontFamily="@font/archivo_black"
         android:onClick="openCurrenciesView"
         android:text="Currencies View"
@@ -24,9 +24,10 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="293dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/com_facebook_auth_dialog_cancel_background"
         android:fontFamily="@font/archivo_black"
         android:onClick="openConverter"
         android:text="Converter"
@@ -40,10 +41,9 @@
 
     <Button
         android:id="@+id/savesButton"
-        android:layout_width="293dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
+        android:background="@drawable/com_facebook_auth_dialog_cancel_background"
         android:fontFamily="@font/archivo_black"
         android:onClick="seeList"
         android:text="Favourites"
@@ -68,11 +68,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="280dp"
+        android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/savesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment"

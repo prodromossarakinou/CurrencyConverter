@@ -26,11 +26,15 @@ public class CurrencyView extends AppCompatActivity {
 
         setContentView(R.layout.activity_currency_view);
         listOfStrings = new ArrayList<>();
+
         listView = findViewById(R.id.listView);
         //Παραλαβή λίστων μέσω του Intent οι οποίες έχουν δημιουργηθεί στην MainMenu(activity)
         Intent intent = getIntent();
-        ArrayList<String> namesList = intent.getStringArrayListExtra("names_list");
-        ArrayList<String> codesList = intent.getStringArrayListExtra("codes_list");
+        //αρχικοποίηση λιστών για αποφυγεί null pointer exception
+        ArrayList<String> namesList = new ArrayList<>();
+        namesList = intent.getStringArrayListExtra("names_list");
+        ArrayList<String> codesList = new ArrayList<>();
+        codesList = intent.getStringArrayListExtra("codes_list");
         for(int i = 0; i<codesList.size(); i++){
             Log.d(TAG, "onCreate: "+ codesList.get(i) +": "+namesList.get(i));
             //Δημιουργίας 3ης λίστας η οποία θα περιέχει String το οποίο θα προβάλετε

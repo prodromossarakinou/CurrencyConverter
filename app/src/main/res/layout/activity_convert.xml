@@ -35,7 +35,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Ammount"
+        android:hint="Amount"
         android:inputType="numberDecimal"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

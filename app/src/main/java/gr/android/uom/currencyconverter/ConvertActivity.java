@@ -57,7 +57,9 @@ public class ConvertActivity extends AppCompatActivity {
         result = findViewById(R.id.result);
         //ενσωμάτωση της λίστας με title codes_list απο την MainMenu(activity)
         Intent intent = getIntent();
-        final ArrayList<String> codesList = intent.getStringArrayListExtra("codes_list");
+        //αρχικοποίηση λίστας για αποφυγή null pointer exception
+        ArrayList<String> codesList = new ArrayList<>();
+        codesList = intent.getStringArrayListExtra("codes_list");
         //Δημιουργία adapter για να εμφανίζει τα δεδομένα της codes_list
         //1η παράμετρος context: ConvertActivity δηλαδη στην activity στην οποία είναι η λίστα
         //2η παράμετρος το layout το οποίο περιέχει το γραφικό συστατικό το οποίο θα περιέχει η λίστα
@@ -78,7 +80,7 @@ public class ConvertActivity extends AppCompatActivity {
         //Αρχικοποίηση των μεταβλητων με το Item που επέλεξε ο χρήστης απο το Spinner
         from = fromSpinner.getSelectedItem().toString();
         to2 = toSpinner.getSelectedItem().toString();
-        //ΕΛΕΓΧΟΣ ΕΑΝ ΥΠΑΡΧΕΙ ΔΩΣΜENO ammount
+        //ΕΛΕΓΧΟΣ ΕΑΝ ΥΠΑΡΧΕΙ ΔΩΣΜENO amount
         if(!ammountText.getText().toString().isEmpty()) {
             if(!from.equals(to2)) {
                 //δημιουργία URL για το Convert το οποίο μας επιστρέφει το μήνυμα.

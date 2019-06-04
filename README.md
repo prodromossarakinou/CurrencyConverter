@@ -4,10 +4,10 @@ First steps in mobile Development
 <br/>
 <p float ="left">
 
-<img src="Authentication.png" width = "150"></img>
+<img src="Authentication.png" width = "150" title ="Authentication's photo"></img>
    
-<img src ="Menu.png" width="150"></img> 
+<img src ="Menu.png" width="150" title="Menu's Photo"></img> 
    
-<img src ="Convert.png" width="150"></img>
+<img src ="Convert.png" width="150" title="Convert's Photo"></img>
 </p>
 <br />

@@ -5,8 +5,9 @@ First steps in mobile Development
 <head>
 <style>
 
-</head>
+
 </style>
+</head>
 <img src="Authentication.png" width = "33.3%"></img>
 
 <img src ="Menu.png" width="33.3%"></img> 

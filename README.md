@@ -14,8 +14,8 @@ C.
 <br />
 Technologies Used:
 <br/>
-*Rest Api for currency convert
-*Rest Api for currencies List
-*Firebase Firestore
-*Firebase authentication with email/password
-*Facebook Authentication
+  *Rest Api for currency convert
+  *Rest Api for currencies List
+  *Firebase Firestore
+  *Firebase authentication with email/password
+  *Facebook Authentication

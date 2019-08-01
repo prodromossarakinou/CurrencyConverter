@@ -19,3 +19,4 @@ Technologies Used:
  <li>Firebase Firestore</li>
  <li>Firebase authentication with email/password</li>
  <li>Facebook Authentication</li>
+</ul>
